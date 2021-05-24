@@ -28,11 +28,19 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+# rexml becames a bundled gem since Ruby 3.0.0
+gem 'rexml', '~> 3.2', '>= 3.2.4'
+
+# Use devise as an authentication solution
+gem 'devise'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
   gem 'rspec-rails', '~> 5.0.0'
+
+  gem 'factory_bot_rails', '~> 6.1.0'
 end
 
 group :development do
