@@ -1,4 +1,5 @@
 class SubscriptionsController < ApplicationController
+  # before_action :authenticate_user!
   before_action :set_subscription, only: %i[ show edit update destroy ]
 
   # GET /subscriptions or /subscriptions.json
@@ -12,6 +13,7 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions/new
   def new
+    @meal = Meal.find(params[:meal_id])
     @subscription = Subscription.new
   end
 
@@ -22,6 +24,7 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions or /subscriptions.json
   def create
     @subscription = Subscription.new(subscription_params)
+    @subscription.user_id = current_user.id
 
     respond_to do |format|
       if @subscription.save
@@ -64,6 +67,6 @@ class SubscriptionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def subscription_params
-      params.require(:subscription).permit(:name, :user_id, :meal_id)
+      params.require(:subscription).permit(:name, :meal_id, :meal_num)
     end
 end

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>name:</strong>
+  <%= @meal.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @meal.price %>
+</p>
+
+<p>
+  <strong>Cut-Off:</strong>
+  <%= @meal.cut_off_at %>
+</p>
+
+<%= link_to 'Edit', edit_meal_path(@meal) %> |
+<%= link_to 'Back', meals_path %> |
+<%= link_to 'Subscribe', new_subscription_path(meal_id: @meal.id) %>

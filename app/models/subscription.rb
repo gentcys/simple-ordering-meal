@@ -4,4 +4,10 @@ class Subscription < ApplicationRecord
 
   belongs_to :user
   belongs_to :meal
+
+  after_save :generate_order
+
+  def generate_order
+    Order.create!(subscription: self, meal: meal)
+  end
 end
