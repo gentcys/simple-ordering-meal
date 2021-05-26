@@ -8,7 +8,9 @@ RSpec.describe Subscription, type: :model do
   it { is_expected.to belong_to(:meal) }
 
   it { is_expected.to validate_presence_of(:name) }
-  it { is_expected.to validate_presence_of(:meal_num)}
+  it { is_expected.to validate_presence_of(:meal_num) }
+  it { is_expected.to validate_presence_of(:deliver_at_day_of_week) }
+  it { is_expected.to validate_presence_of(:deliver_at_hour) }
 
   describe 'after_save callback' do
     let(:subscription) { create(:subscription) }

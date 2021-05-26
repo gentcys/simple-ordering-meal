@@ -20,6 +20,20 @@
     <%= form.number_field :meal_num, { min: 1, max: 99 } %>
   </div>
 
+  <% if @meal.exceeds_cut_off? %>
+    <p><b>* 超过当前套餐的截止时间(<%= @meal.cut_off_at %>)，只能订阅到下周的送餐周期</b></p>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :deliver_at_day_of_week %>
+    <%= form.select :deliver_at_day_of_week, (0..6).each.collect { |n| [ Date::DAYNAMES[n], n ] } %>
+  </div>
+
+    <div class="field">
+    <%= form.label :deliver_at_hour %>
+    <%= form.number_field :deliver_at_hour, { min: 0, max: 23 } %>
+  </div>
+
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
