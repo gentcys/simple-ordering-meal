@@ -17,5 +17,9 @@ RSpec.describe "Static Page", type: :system do
     it 'contains a link to sign in page' do
       expect(page).to(have_link('Sign In', href: '/users/sign_in'))
     end
+
+    it 'contains a link to most popular meals' do
+      expect(page).to(have_link('Most Popular Meals', href: popularest_meals_path))
+    end
   end
 end

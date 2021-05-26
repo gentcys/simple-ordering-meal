@@ -1,0 +1,21 @@
+<% unless meals.empty? %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Cut-Off</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% meals.each do |meal| %>
+    <tr>
+      <td><%= meal.name %></td>
+      <td><%= meal.price %></td>
+      <td><%= meal.cut_off_at %></td>
+      <td><%= link_to 'Subscribe', new_subscription_path(meal_id: meal.id) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

@@ -9,4 +9,8 @@ class MealsController < ApplicationController
 
   def edit
   end
+
+  def popularest
+    @meals = Meal.most_popular
+  end
 end

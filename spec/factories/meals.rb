@@ -4,5 +4,6 @@ FactoryBot.define do
     price { rand(1.01..20.99) }
     cut_off_at_day_of_week { rand(0..6) }
     cut_off_at_time_of_day { Time.now }
+    score { 0 }
   end
 end

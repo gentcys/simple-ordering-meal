@@ -1,23 +1,4 @@
 <h1>Meals#index</h1>
 <p>Find me in app/views/meals/index.html.erb</p>
 
-<% unless @meals.empty? %>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Cut-Off</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @meals.each do |meal| %>
-    <tr>
-      <td><%= meal.name %></td>
-      <td><%= meal.price %></td>
-      <td><%= meal.cut_off_at %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<% end %>
+<%= render 'table', meals: @meals %>

@@ -52,4 +52,33 @@ RSpec.describe Meal, type: :model do
       end
     end
   end
+
+  describe '.most_popular' do
+    before do
+      10.times { |n| create(:meal, score: n) }
+    end
+
+    it 'returns meals order by score in descending' do
+      meals = described_class.most_popular
+
+      expect(meals.first.score).to eq(9)
+      expect(meals.last.score).to eq(0)
+    end
+
+    context 'without limit' do
+      meals = described_class.most_popular
+
+      it 'returns by default limit' do
+        expect(meals.count).to eq(10)
+      end
+    end
+
+    context 'with limit' do
+      meals = described_class.most_popular(limit: 5)
+
+      it 'returns by specified limit' do
+        expect(meals.count).to eq(5)
+      end
+    end
+  end
 end

@@ -13,4 +13,8 @@ class Meal < ApplicationRecord
 
     now.hour >= cut_off_at_time_of_day.hour
   end
+
+  def self.most_popular(limit: 10)
+    order(score: :desc).limit(limit)
+  end
 end

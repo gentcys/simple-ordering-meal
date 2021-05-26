@@ -36,3 +36,4 @@ User 发起  Subscription 时需要选择 Meal，或者选择 Meal 发起  Subsc
 - [ ] 用户订阅
 - [ ] 生成订单
 - [ ] 集合订单
+- [x] 餐食排行

@@ -13,12 +13,16 @@ RSpec.describe Subscription, type: :model do
   it { is_expected.to validate_presence_of(:deliver_at_hour) }
 
   describe 'after_save callback' do
-    let(:subscription) { create(:subscription) }
+    let!(:subscription) { create(:subscription) }
 
     it 'generates an order' do
       order = Order.find_by(subscription_id: subscription.id)
 
       expect(order.subscription).to eq(subscription)
+    end
+
+    it 'increases the meal\'s rank score' do
+      expect(subscription.meal.score).to eq(1)
     end
   end
 end

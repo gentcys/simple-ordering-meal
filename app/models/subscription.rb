@@ -10,9 +10,14 @@ class Subscription < ApplicationRecord
   belongs_to :meal
 
   after_save :generate_order
+  after_save :increase_meal_score
 
   def generate_order
     Order.create!(subscription: self, meal: meal, deliver_at: order_deliver_at)
+  end
+
+  def increase_meal_score
+    meal.increment!(:score)
   end
 
   def this_week_delivery_at
