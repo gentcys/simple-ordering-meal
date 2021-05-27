@@ -39,7 +39,7 @@ class Subscription < ApplicationRecord
 
     deliver_day = today + (deliver_at_day_of_week - WeekDay.wday(today))
 
-    Time.new(deliver_day.year, deliver_day.month, deliver_day.day, deliver_at_hour).utc
+    Time.new(deliver_day.year, deliver_day.month, deliver_day.day, deliver_at_hour, 0, 0, "+00:00")
   end
 
   def order_deliver_at
