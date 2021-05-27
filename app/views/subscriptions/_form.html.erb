@@ -26,7 +26,7 @@
 
   <div class="field">
     <%= form.label :deliver_at_day_of_week %>
-    <%= form.select :deliver_at_day_of_week, (0..6).each.collect { |n| [ Date::DAYNAMES[n], n ] } %>
+    <%= form.select :deliver_at_day_of_week, (0..6).each.collect { |n| [ Date::DAYNAMES.rotate[n], n ] } %>
   </div>
 
     <div class="field">

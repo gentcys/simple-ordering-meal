@@ -1,0 +1,32 @@
+<%= form_with(model: @meal, url: admin_meal_path(@meal)) do |form| %>
+  <% if @meal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@meal.errors.count, "error") %> prohibited this meal from being saved:</h2>
+
+      <ul>
+        <% @meal.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :meal_id %>
+    <%= form.text_field :meal_id, value: @meal.id, disabled: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :meal_name %>
+    <%= form.text_field :meal_name, value: @meal.name, disabled: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cut_off_at_day_of_week %>
+    <%= form.select :cut_off_at_day_of_week, (0..6).each.collect { |n| [ Date::DAYNAMES.rotate[n], n ] } %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

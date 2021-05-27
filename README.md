@@ -18,14 +18,6 @@ User 发起  Subscription 时需要选择 Meal，或者选择 Meal 发起  Subsc
 ### Order 与 Subscription
 新建的 Subscription 自动生成一个 Order，到了 Cut-off 的 Subscription 生成本周内的 Order
 
-## 技术选型
-
-- 使用 devise 快速实现注册登陆
-- 使用 PostgreSQL 做数据存储
-- 使用 Redis sorted-set 实现最流行餐食排行榜
-- 使用定时任务生成 Order
-- 当重新部署应用时，检查 所有 Subcription 的最新 Order 生成时间如果不是在本周内则生成本周内的 Order
-
 ## Todo List
 
 - [x] 新建项目
@@ -37,3 +29,4 @@ User 发起  Subscription 时需要选择 Meal，或者选择 Meal 发起  Subsc
 - [x] 生成订单
 - [ ] 集合订单
 - [x] 餐食排行
+- [x] 餐食管理

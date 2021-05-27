@@ -3,10 +3,15 @@ Rails.application.routes.draw do
   root to: 'static#index'
 
   devise_for :users
+  devise_for :admins
 
   get 'meals/popularest', to: 'meals#popularest', as: 'popularest_meals'
   resources :meals
 
   resources :subscriptions
   resources :orders
+
+  namespace :admin do
+    resources :meals
+  end
 end
