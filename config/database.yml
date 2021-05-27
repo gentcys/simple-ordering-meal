@@ -86,6 +86,7 @@ test:
 #
 production:
   <<: *default
-  database: simple_ordering_meal_production
-  username: simple_ordering_meal
-  password: <%= ENV['SIMPLE_ORDERING_MEAL_DATABASE_PASSWORD'] %>
+  # database: simple_ordering_meal_production
+  # username: simple_ordering_meal
+  # password: <%= ENV['SIMPLE_ORDERING_MEAL_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
