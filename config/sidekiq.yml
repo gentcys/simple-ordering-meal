@@ -1,0 +1,4 @@
+:schedule:
+  create_order_per_subscription:
+    cron: '0 0 * * 1'   # Runs once at the beginning of every week
+    class: CreateOrderPerSubscriptionWorker

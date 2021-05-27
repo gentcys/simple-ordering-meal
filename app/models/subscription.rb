@@ -9,6 +9,8 @@ class Subscription < ApplicationRecord
   belongs_to :user
   belongs_to :meal
 
+  has_many :orders
+
   after_save :generate_order
   after_save :increase_meal_score
 
@@ -43,5 +45,12 @@ class Subscription < ApplicationRecord
     return (this_week_delivery_at + 7.days) if exceeds_meal_cut_off?
 
     this_week_delivery_at
+  end
+
+  def self.without_generated_order_for_week(week_period)
+    order_generated_subscription_ids = Order.in_week_period(week_period).pluck(:subscription_id)
+
+    sql = includes(:meal).where('created_at < ?', week_period.beginning)
+    sql.where.not(id: order_generated_subscription_ids) unless order_generated_subscription_ids.empty?
   end
 end
