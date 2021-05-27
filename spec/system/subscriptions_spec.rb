@@ -28,7 +28,7 @@ RSpec.describe "Subscriptions", type: :system do
     end
 
     context 'when exceeds a meal\'s cut off' do
-      let!(:meal_one) { create(:meal, cut_off_at_day_of_week: Time.now.wday - 1) }
+      let!(:meal_one) { create(:meal, cut_off_at_day_of_week: WeekDay.current_wday - 1) }
 
       it 'creates an order for next week' do
         visit new_subscription_path(meal_id: meal.id)

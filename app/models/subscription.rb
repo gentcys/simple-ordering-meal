@@ -20,16 +20,27 @@ class Subscription < ApplicationRecord
     meal.increment!(:score)
   end
 
+  def exceeds_meal_cut_off?
+    return true if WeekDay.current_wday >= deliver_at_day_of_week
+    return true if deliver_at_day_of_week > meal.cut_off_at_day_of_week
+
+    if deliver_at_day_of_week == meal.cut_off_at_day_of_week && deliver_at_hour >= meal.cut_off_at_time_of_day.hour
+      return true
+    end
+
+    false
+  end
+
   def this_week_delivery_at
     today = Date.today
 
-    deliver_day = today + (deliver_at_day_of_week - today.wday)
+    deliver_day = today + (deliver_at_day_of_week - WeekDay.wday(today))
 
     Time.new(deliver_day.year, deliver_day.month, deliver_day.day, deliver_at_hour).utc
   end
 
   def order_deliver_at
-    return this_week_delivery_at + 7.days if meal.exceeds_cut_off?
+    return (this_week_delivery_at + 7.days) if exceeds_meal_cut_off?
 
     this_week_delivery_at
   end
