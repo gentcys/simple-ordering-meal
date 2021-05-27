@@ -7,6 +7,9 @@ class Admin::MealsController < ApplicationController
   end
 
   def show
+    current_week = WeekPeriod.current
+
+    @orders = @meal.orders.in_week_period(current_week)
   end
 
   def edit
@@ -14,7 +17,7 @@ class Admin::MealsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @meal.update(order_params)
+      if @meal.update(meal_params)
         format.html { redirect_to @meal, notice: "Meal was successfully updated." }
         format.json { render :show, status: :ok, location: @meal }
       else
@@ -30,7 +33,7 @@ class Admin::MealsController < ApplicationController
     @meal = Meal.find(params[:id])
   end
 
-  def order_params
+  def meal_params
     params.require(:meal).permit(:cut_off_at_day_of_week)
   end
 end

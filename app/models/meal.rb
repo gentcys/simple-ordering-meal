@@ -1,4 +1,6 @@
 class Meal < ApplicationRecord
+  has_many :orders
+
   CUT_OFF_AT = 'Every %s, %s'
 
   def cut_off_at

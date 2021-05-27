@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>name:</strong>
+  <%= @meal.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @meal.price %>
+</p>
+
+<p>
+  <strong>Cut-Off:</strong>
+  <%= @meal.cut_off_at %>
+</p>
+
+<p>All generated orders in this week:</p>
+<% unless @orders.empty? %>
+<table>
+  <thead>
+    <tr>
+      <th>Order Id</th>
+      <th>Deliver At</th>
+      <th>Created At</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.id %></td>
+      <td><%= order.deliver_at %></td>
+      <td><%= order.created_at %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+
+<%= link_to 'Edit', edit_admin_meal_path(@meal) %> |
+<%= link_to 'Back', admin_meals_path %> |

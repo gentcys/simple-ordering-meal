@@ -17,6 +17,7 @@
       <td><%= meal.price %></td>
       <td><%= meal.cut_off_at %></td>
       <td><%= link_to 'Edit', edit_admin_meal_path(meal) %></td>
+      <td><%= link_to 'Show', admin_meal_path(meal) %></td>
     </tr>
     <% end %>
   </tbody>
