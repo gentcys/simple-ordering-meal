@@ -24,7 +24,8 @@ class Subscription < ApplicationRecord
 
   def exceeds_meal_cut_off?
     return true if WeekDay.current_wday >= deliver_at_day_of_week
-    return true if deliver_at_day_of_week > meal.cut_off_at_day_of_week
+    return true if WeekDay.current_wday > meal.cut_off_at_day_of_week
+    return true if meal.cut_off_at_day_of_week > deliver_at_day_of_week
 
     if deliver_at_day_of_week == meal.cut_off_at_day_of_week && deliver_at_hour >= meal.cut_off_at_time_of_day.hour
       return true
